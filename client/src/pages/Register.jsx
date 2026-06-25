@@ -35,9 +35,9 @@ function Register({ onSwitch, onSuccess }) {
 
   return (
     <div className="auth-card">
-      <div className="logo">X</div>
+      <div className="logo">Instant</div>
       <h1>Create account</h1>
-      <p className="subtitle">Join Mini X today</p>
+      <p className="subtitle">Join Instant today</p>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>

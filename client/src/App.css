@@ -18,15 +18,10 @@
 }
 
 .logo {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
+  width: fit-content;
   margin: 0 auto 20px;
-  color: white;
-  background: #111827;
-  border-radius: 50%;
-  font-size: 22px;
+  color: #111827;
+  font-size: 26px;
   font-weight: 700;
 }
 
@@ -158,20 +153,9 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
   color: #111827;
   font-size: 20px;
   font-weight: 700;
-}
-
-.brand span {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  color: white;
-  background: #111827;
-  border-radius: 50%;
 }
 
 .navbar-user {

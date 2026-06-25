@@ -11,7 +11,7 @@ function Navbar({ onNavigate }) {
   return (
     <header className="navbar">
       <button className="brand" onClick={() => onNavigate("home")}>
-        <span>X</span> Mini X
+        Instant
       </button>
 
       <div className="navbar-user">

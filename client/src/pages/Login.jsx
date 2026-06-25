@@ -27,9 +27,9 @@ function Login({ onSwitch, onSuccess }) {
 
   return (
     <div className="auth-card">
-      <div className="logo">X</div>
+      <div className="logo">Instant</div>
       <h1>Welcome back</h1>
-      <p className="subtitle">Log in to Mini X</p>
+      <p className="subtitle">Log in to Instant</p>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
@@ -62,7 +62,7 @@ function Login({ onSwitch, onSuccess }) {
       </form>
 
       <p className="switch-text">
-        New to Mini X?{" "}
+        New to Instant?{" "}
         <button className="link-button" type="button" onClick={() => onSwitch("register")}>
           Create an account
         </button>
