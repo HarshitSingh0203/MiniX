@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { getPostsByUser } from "../services/postApi";
 import { getUser, toggleFollow, updateProfile } from "../services/userApi";
 import { getImageUrl } from "../services/apiConfig";
+import "./Page.css";
+import "./Profile.css";
 
 function Profile({ username, onNavigate }) {
   const { user, saveUser } = useAuth();

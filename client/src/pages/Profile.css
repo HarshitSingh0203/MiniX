@@ -1,0 +1,92 @@
+.profile-header {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding: 28px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  font-size: 32px;
+}
+
+.profile-info {
+  min-width: 0;
+}
+
+.profile-info h2,
+.profile-info p {
+  margin: 0;
+}
+
+.profile-info > p {
+  color: #6b7280;
+}
+
+.profile-info .profile-bio {
+  margin-top: 12px;
+  color: #374151;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.profile-stats strong {
+  color: #111827;
+}
+
+.profile-header > .outline-button,
+.follow-button {
+  height: fit-content;
+  margin-left: auto;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 8px solid #f3f4f6;
+}
+
+.edit-profile-form h3 {
+  margin: 0 0 4px;
+}
+
+.edit-profile-form input,
+.edit-profile-form textarea {
+  padding: 10px 12px;
+  color: #111827;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+  outline: none;
+}
+
+.edit-profile-form textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.edit-profile-form .primary-button {
+  align-self: flex-start;
+}
+
+@media (max-width: 700px) {
+  .profile-header {
+    flex-wrap: wrap;
+  }
+
+  .profile-header > .outline-button,
+  .follow-button {
+    margin-left: 0;
+  }
+}

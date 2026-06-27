@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { loginUser } from "../services/authApi";
 import { useAuth } from "../context/AuthContext";
+import "./Auth.css";
 
 function Login({ onSwitch, onSuccess }) {
   const { saveUser } = useAuth();

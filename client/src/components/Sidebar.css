@@ -1,0 +1,235 @@
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 20px 16px;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af transparent;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  padding-left: 14px;
+}
+
+.logo-icon {
+  color: #5b2cff;
+  font-size: 32px;
+}
+
+/* Menu */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-menu button {
+  width: fit-content;
+  min-width: 220px;
+  border: none;
+  background: transparent;
+  padding: 14px 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+.sidebar-menu button svg {
+  font-size: 24px;
+}
+
+.sidebar-menu button:hover,
+.sidebar-menu button.active {
+  background: #f4f1ff;
+  color: #5b2cff;
+}
+
+/* Post Button */
+.post-btn {
+  width: 230px;
+  height: 56px;
+  margin-top: 24px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+  color: white;
+  font-size: 22px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.post-btn:hover {
+  background: linear-gradient(135deg, #5b21b6, #4338ca);
+}
+
+/* Bottom user */
+.sidebar-user {
+  margin-top: auto;
+  padding: 12px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.sidebar-user:hover {
+  background: #f3f4f6;
+}
+
+.sidebar-user img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.user-info p {
+  margin: 3px 0 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.more-icon {
+  font-size: 16px;
+  color: #64748b;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 10px;
+}
+
+/* Icon-only sidebar */
+@media (max-width: 1300px) {
+  .sidebar {
+    width: 88px;
+    min-width: 88px;
+    height: 100dvh;
+    max-height: 100dvh;
+    padding: 10px 6px;
+    overflow-y: scroll;
+  }
+
+  .logo span,
+  .sidebar-menu button span,
+  .post-btn span,
+  .user-info,
+  .more-icon {
+    display: none;
+  }
+
+  .logo {
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 22px;
+  }
+
+  .logo-icon {
+    font-size: 28px;
+  }
+
+  .sidebar-menu button {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+    min-width: 52px;
+    margin: 0 auto;
+    flex: 0 0 auto;
+  }
+
+  .post-btn {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 20px auto;
+    flex: 0 0 auto;
+  }
+
+  .sidebar-user {
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 72px;
+    min-width: 72px;
+    padding: 10px 6px;
+  }
+
+  .logo-icon {
+    font-size: 28px;
+  }
+
+  .sidebar-menu button,
+  .post-btn {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 60px;
+    min-width: 60px;
+    padding: 8px 4px;
+  }
+
+  .sidebar-menu button,
+  .post-btn {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+}

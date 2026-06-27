@@ -1,27 +1,21 @@
-import { useAuth } from "../context/AuthContext";
+import "./Navbar.css";
 
-function Navbar({ onNavigate }) {
-  const { user, logout } = useAuth();
+function Navbar() {
+  //return (
+    // <header className="navbar">
+    //   <button className="brand" onClick={() => onNavigate("home")}>
+    //     Instant
+    //   </button>
 
-  const handleLogout = () => {
-    logout();
-    window.history.pushState({}, "", "/login");
-  };
-
-  return (
-    <header className="navbar">
-      <button className="brand" onClick={() => onNavigate("home")}>
-        Instant
-      </button>
-
-      <div className="navbar-user">
-        <button onClick={() => onNavigate("profile", user.username)}>
-          @{user.username}
-        </button>
-        <button className="logout-button" onClick={handleLogout}>Logout</button>
-      </div>
-    </header>
-  );
+    //   <div className="navbar-user">
+    //     <button onClick={() => onNavigate("profile", user.username)}>
+    //       @{user.username}
+    //     </button>
+    //     <button className="logout-button" onClick={handleLogout}>Logout</button>
+    //   </div>
+    // </header>
+  //);
+  return null;
 }
 
 export default Navbar;

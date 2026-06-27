@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { createPost } from "../services/postApi";
+import "./CreatePost.css";
 
 function CreatePost({ onCreated }) {
   const [text, setText] = useState("");

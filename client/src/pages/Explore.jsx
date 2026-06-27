@@ -3,6 +3,8 @@ import PostCard from "../components/PostCard";
 import { getAllPosts } from "../services/postApi";
 import { searchUsers } from "../services/userApi";
 import { getImageUrl } from "../services/apiConfig";
+import "./Page.css";
+import "./Explore.css";
 
 function Explore({ onNavigate }) {
   const [posts, setPosts] = useState([]);

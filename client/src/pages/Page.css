@@ -1,0 +1,32 @@
+.page-title {
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.page-title h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.section-heading {
+  margin: 0;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 18px;
+}
+
+@media (max-width: 700px) {
+  .page-title,
+  .section-heading {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title,
+  .section-heading {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

@@ -1,3 +1,5 @@
+import "./RightSidebar.css";
+
 function RightSidebar() {
   return (
     <aside className="right-sidebar">

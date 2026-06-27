@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import PostCard from "../components/PostCard";
 import { getFeedPosts } from "../services/postApi";
+import "./Page.css";
 
 function Home({ onNavigate }) {
   const [posts, setPosts] = useState([]);

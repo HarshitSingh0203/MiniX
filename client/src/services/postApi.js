@@ -20,9 +20,11 @@ const request = async (endpoint = "", options = {}) => {
 
 export const getAllPosts = () => request();
 export const getFeedPosts = () => request("/feed");
+export const getBookmarkedPosts = () => request("/bookmarks");
 export const getPostsByUser = (username) => request(`/user/${username}`);
 export const createPost = (formData) => request("", { method: "POST", body: formData });
 export const toggleLike = (postId) => request(`/${postId}/like`, { method: "PUT" });
+export const toggleBookmark = (postId) => request(`/${postId}/bookmark`, { method: "PUT" });
 export const addComment = (postId, text) =>
   request(`/${postId}/comment`, { method: "POST", body: JSON.stringify({ text }) });
 export const deletePost = (postId) => request(`/${postId}`, { method: "DELETE" });

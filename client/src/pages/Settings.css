@@ -1,0 +1,52 @@
+.settings-form {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.settings-form label {
+  display: grid;
+  gap: 7px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.settings-form input,
+.settings-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  color: #111827;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 400;
+  outline: none;
+}
+
+.settings-form textarea {
+  resize: vertical;
+}
+
+.settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.success-message {
+  margin: 0;
+  padding: 10px;
+  color: #166534;
+  background: #dcfce7;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .settings-form {
+    padding: 16px 14px;
+  }
+}

@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { addComment, deletePost, toggleLike } from "../services/postApi";
+import { addComment, deletePost, toggleBookmark, toggleLike } from "../services/postApi";
 import { useAuth } from "../context/AuthContext";
 import { getImageUrl } from "../services/apiConfig";
+import "./PostCard.css";
 
-function PostCard({ post, onDelete, onOpenProfile }) {
-  const { user } = useAuth();
+function PostCard({ post, onDelete, onOpenProfile, onBookmarkChange }) {
+  const { user, saveUser } = useAuth();
   const [likes, setLikes] = useState(post.likes || []);
+  const [bookmarked, setBookmarked] = useState(
+    user.bookmarks?.some((id) => (id._id || id).toString() === post._id) || false
+  );
   const [comments, setComments] = useState(post.comments || []);
   const [commentText, setCommentText] = useState("");
   const [showComments, setShowComments] = useState(false);
@@ -33,6 +37,17 @@ function PostCard({ post, onDelete, onOpenProfile }) {
       setComments([...comments, comment]);
       setCommentText("");
       setShowComments(true);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleBookmark = async () => {
+    try {
+      const result = await toggleBookmark(post._id);
+      setBookmarked(result.bookmarked);
+      saveUser({ ...user, bookmarks: result.bookmarks, token: localStorage.getItem("token") });
+      onBookmarkChange?.(post._id, result.bookmarked);
     } catch (error) {
       setError(error.message);
     }
@@ -78,6 +93,9 @@ function PostCard({ post, onDelete, onOpenProfile }) {
         </button>
         <button onClick={() => setShowComments(!showComments)}>
           Comment {comments.length}
+        </button>
+        <button className={bookmarked ? "bookmarked" : ""} onClick={handleBookmark}>
+          {bookmarked ? "Saved" : "Save"}
         </button>
       </div>
 
