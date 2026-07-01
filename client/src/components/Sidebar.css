@@ -88,14 +88,25 @@
   background: linear-gradient(135deg, #5b21b6, #4338ca);
 }
 
+.sidebar-user-wrap {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+}
+
 /* Bottom user */
 .sidebar-user {
-  margin-top: auto;
+  width: 100%;
   padding: 12px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   gap: 12px;
+  color: #0f172a;
+  background: transparent;
+  border: 0;
+  text-align: left;
   cursor: pointer;
 }
 
@@ -113,23 +124,72 @@
 .user-info {
   flex: 1;
   min-width: 0;
+  display: grid;
 }
 
-.user-info h4 {
+.user-info strong {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.user-info p {
+.user-info small {
   margin: 3px 0 0;
   color: #64748b;
   font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.more-icon {
-  font-size: 16px;
+.sidebar-more {
+  position: absolute;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
   color: #64748b;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sidebar-more:hover {
+  background: #e5e7eb;
+}
+
+.sidebar-user-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  z-index: 200;
+  width: 190px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.16);
+}
+
+.sidebar-user-menu button {
+  width: 100%;
+  padding: 12px 14px;
+  color: #111827;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sidebar-user-menu button:hover {
+  background: #f8fafc;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -159,8 +219,7 @@
   .logo span,
   .sidebar-menu button span,
   .post-btn span,
-  .user-info,
-  .more-icon {
+  .user-info {
     display: none;
   }
 
@@ -197,6 +256,27 @@
   .sidebar-user {
     justify-content: center;
     flex: 0 0 auto;
+    padding: 8px;
+  }
+
+  .sidebar-user-wrap {
+    justify-content: center;
+  }
+
+  .sidebar-more {
+    right: 0;
+    bottom: -3px;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+  }
+
+  .sidebar-user-menu {
+    left: 8px;
+    right: auto;
+    width: 170px;
   }
 }
 
@@ -233,3 +313,4 @@
     min-width: 44px;
   }
 }
+/* Styles for the left navigation sidebar. */

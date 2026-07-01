@@ -10,6 +10,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body[data-theme="dark"] {
+  color: #e5e7eb;
+  background: #0f172a;
+}
+
+body[data-theme="purple"] {
+  color: #1f1147;
+  background: #f5f0ff;
+}
+
 button,
 input {
   font-family: inherit;
@@ -21,3 +31,64 @@ input,
 textarea {
   box-sizing: border-box;
 }
+
+body[data-theme="dark"] .app,
+body[data-theme="dark"] .main-column,
+body[data-theme="dark"] .post-card,
+body[data-theme="dark"] .feed-header,
+body[data-theme="dark"] .side-card,
+body[data-theme="dark"] .composer-dialog,
+body[data-theme="dark"] .search-results > button,
+body[data-theme="dark"] .people-results button,
+body[data-theme="dark"] .conversation-list button,
+body[data-theme="dark"] .settings-profile-shortcut button,
+body[data-theme="dark"] .mode-control button,
+body[data-theme="dark"] .logout-button {
+  color: #e5e7eb;
+  background: #111827;
+}
+
+body[data-theme="dark"] input,
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] .right-search input,
+body[data-theme="dark"] .chat-search input,
+body[data-theme="dark"] .message-form input,
+body[data-theme="dark"] .search-form input {
+  color: #e5e7eb;
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body[data-theme="dark"] .post-card:hover,
+body[data-theme="dark"] .sidebar-user:hover,
+body[data-theme="dark"] .sidebar-menu button:hover,
+body[data-theme="dark"] .sidebar-menu button.active,
+body[data-theme="dark"] .conversation-list button:hover,
+body[data-theme="dark"] .conversation-list button.active {
+  background: #1f2937;
+}
+
+body[data-theme="dark"] .post-author,
+body[data-theme="dark"] .side-card strong,
+body[data-theme="dark"] .message-header button,
+body[data-theme="dark"] .comment button {
+  color: #f9fafb;
+}
+
+body[data-theme="purple"] .app,
+body[data-theme="purple"] .main-column,
+body[data-theme="purple"] .post-card,
+body[data-theme="purple"] .feed-header,
+body[data-theme="purple"] .side-card,
+body[data-theme="purple"] .composer-dialog {
+  background: #fffaff;
+}
+
+body[data-theme="purple"] .sidebar-menu button:hover,
+body[data-theme="purple"] .sidebar-menu button.active,
+body[data-theme="purple"] .post-card:hover,
+body[data-theme="purple"] .conversation-list button:hover,
+body[data-theme="purple"] .conversation-list button.active {
+  background: #efe7ff;
+}
+/* Global page reset and theme colors. */

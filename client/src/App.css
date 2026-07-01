@@ -44,6 +44,56 @@
   padding: 24px;
 }
 
+.composer-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: start center;
+  padding: 72px 16px 24px;
+}
+
+.composer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.composer-dialog {
+  position: relative;
+  width: min(100%, 620px);
+  overflow: hidden;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.composer-dialog-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 12px 0;
+}
+
+.composer-dialog-header button {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #111827;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.composer-dialog-header button:hover {
+  background: #f3f4f6;
+}
+
+.composer-dialog .create-post {
+  border-bottom: 0;
+}
+
 /* Tablet */
 @media (max-width: 1300px) {
   .app-layout {
@@ -75,3 +125,4 @@
     padding: 16px;
   }
 }
+/* Main app layout styles. */

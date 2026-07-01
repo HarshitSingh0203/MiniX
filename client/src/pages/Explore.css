@@ -27,7 +27,7 @@
 }
 
 .search-results {
-  border-bottom: 8px solid #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .search-results > button {
@@ -61,3 +61,57 @@
   width: 40px;
   height: 40px;
 }
+
+.explore-block {
+  border-bottom: 8px solid #f3f4f6;
+}
+
+.explore-block h2 {
+  margin: 0;
+  padding: 16px 20px 8px;
+  font-size: 18px;
+}
+
+.topic-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 8px solid #f3f4f6;
+}
+
+.topic-strip button {
+  min-width: 0;
+  padding: 12px;
+  color: #111827;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.topic-strip strong,
+.topic-strip span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topic-strip span {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 520px) {
+  .search-form {
+    padding: 14px 12px;
+  }
+
+  .topic-strip {
+    grid-template-columns: 1fr;
+    padding: 14px 12px;
+  }
+}
+/* Styles for explore search, topics, and result blocks. */

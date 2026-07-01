@@ -16,6 +16,7 @@ function Login({ onSwitch, onSuccess }) {
     setLoading(true);
 
     try {
+      // Send the email and password to the backend, then save the returned user.
       const data = await loginUser({ email, password });
       saveUser(data);
       onSuccess();

@@ -46,6 +46,11 @@
   object-fit: cover;
 }
 
+.user-avatar-image {
+  object-fit: cover;
+  object-position: center 25%;
+}
+
 .error-message {
   margin: 0 0 16px;
   padding: 10px;
@@ -68,3 +73,4 @@
   padding: 30px 20px;
   text-align: center;
 }
+/* Shared reusable styles used across pages. */

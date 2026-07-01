@@ -15,6 +15,7 @@ function Register({ onSwitch, onSuccess }) {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
+    // Update only the input that the user is typing in.
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
@@ -24,6 +25,7 @@ function Register({ onSwitch, onSuccess }) {
     setLoading(true);
 
     try {
+      // Create the user account, then log the user in with the returned data.
       const data = await registerUser(formData);
       saveUser(data);
       onSuccess();

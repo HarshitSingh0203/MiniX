@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import CreatePost from "./components/CreatePost";
 import Navbar from "./components/Navbar";
 import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
@@ -17,22 +19,31 @@ import "./App.css";
 const getRoute = () => {
   const path = window.location.pathname;
 
+  // Match the browser URL with the page we want to show.
   if (path === "/explore") return { page: "explore" };
   if (path === "/chat") return { page: "chat" };
   if (path === "/bookmarks") return { page: "bookmarks" };
   if (path === "/settings") return { page: "settings" };
+
   if (path.startsWith("/profile/")) {
-    return { page: "profile", username: decodeURIComponent(path.split("/")[2]) };
+    const username = path.split("/")[2];
+    return { page: "profile", username: decodeURIComponent(username) };
   }
+
   return { page: "home" };
 };
 
 function App() {
   const { user } = useAuth();
   const [route, setRoute] = useState(getRoute);
+  const [showComposer, setShowComposer] = useState(false);
   const [authPage, setAuthPage] = useState(
     window.location.pathname === "/register" ? "register" : "login"
   );
+
+  useEffect(() => {
+    document.body.dataset.theme = localStorage.getItem("themeMode") || "light";
+  }, []);
 
   useEffect(() => {
     const handleBackButton = () => {
@@ -54,6 +65,8 @@ function App() {
 
   const navigate = (page, username) => {
     let path = "/";
+
+    // Keep this simple: each page name points to one URL.
     if (page === "explore") path = "/explore";
     if (page === "chat") path = "/chat";
     if (page === "bookmarks") path = "/bookmarks";
@@ -68,6 +81,11 @@ function App() {
   const handleAuthSuccess = () => {
     window.history.pushState({}, "", "/");
     setRoute({ page: "home" });
+  };
+
+  const handleModalPostCreated = (post) => {
+    window.dispatchEvent(new CustomEvent("instant:post-created", { detail: post }));
+    setShowComposer(false);
   };
 
   if (!user) {
@@ -86,21 +104,40 @@ function App() {
     <div className="app">
       <Navbar onNavigate={navigate} />
       <div className="app-layout">
-        <Sidebar currentPage={route.page} onNavigate={navigate} user={user} />
+        <Sidebar
+          currentPage={route.page}
+          onNavigate={navigate}
+          onPostClick={() => setShowComposer(true)}
+          user={user}
+        />
 
         <main className="main-column">
           {route.page === "explore" && <Explore onNavigate={navigate} />}
           {route.page === "chat" && <Chat onNavigate={navigate} />}
           {route.page === "bookmarks" && <Bookmarks onNavigate={navigate} />}
-          {route.page === "settings" && <Settings />}
+          {route.page === "settings" && <Settings onNavigate={navigate} />}
           {route.page === "profile" && (
             <Profile key={route.username} username={route.username} onNavigate={navigate} />
           )}
           {route.page === "home" && <Home onNavigate={navigate} />}
         </main>
 
-        <RightSidebar />
+        <RightSidebar onNavigate={navigate} />
       </div>
+
+      {showComposer && (
+        <div className="composer-modal" role="dialog" aria-modal="true">
+          <div className="composer-backdrop" onClick={() => setShowComposer(false)} />
+          <div className="composer-dialog">
+            <div className="composer-dialog-header">
+              <button type="button" onClick={() => setShowComposer(false)} aria-label="Close composer">
+                <FaTimes />
+              </button>
+            </div>
+            <CreatePost onCreated={handleModalPostCreated} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

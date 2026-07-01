@@ -1,65 +1,247 @@
 .create-post {
-  padding: 20px;
-  border-bottom: 8px solid #f3f4f6;
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  background: white;
+}
+
+.create-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.create-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .create-post textarea {
   width: 100%;
-  min-height: 80px;
-  resize: vertical;
+  min-height: 90px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 22px;
+  font-family: inherit;
+  background: transparent;
+  color: #111827;
+}
+
+.create-post textarea::placeholder {
+  color: #6b7280;
+}
+
+.selected-image {
+  position: relative;
+  margin: 10px 0 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.selected-image img {
+  width: 100%;
+  max-height: 360px;
+  display: block;
+  object-fit: cover;
+}
+
+.selected-image-actions {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.selected-image-actions button {
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px;
+  color: white;
+  background: rgba(15, 23, 42, 0.78);
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.poll-box {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.poll-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #111827;
+}
+
+.poll-header button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: #64748b;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.poll-box input {
+  width: 100%;
+  padding: 11px 12px;
   color: #111827;
   background: white;
-  border: 0;
-  outline: 0;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
   font: inherit;
-  font-size: 18px;
+  outline: none;
+}
+
+.inline-error {
+  margin-top: 8px;
+  color: #ef4444;
+  font-size: 14px;
 }
 
 .create-post-actions {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-top: 12px;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
 }
 
+.create-icons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.emoji-wrap {
+  position: relative;
+}
+
+.create-icons button,
 .image-button {
-  color: #168bd6;
-  font-size: 14px;
-  font-weight: 700;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: #1d9bf0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  font-size: 18px;
+}
+
+.create-icons button:hover,
+.image-button:hover,
+.create-icons button.active-tool {
+  background: #e8f5fe;
 }
 
 .image-button input {
   display: none;
 }
 
-.selected-file {
-  margin: 8px 0 0;
-  color: #6b7280;
-  font-size: 13px;
+.emoji-picker {
+  position: absolute;
+  left: 0;
+  bottom: 44px;
+  z-index: 10;
+  width: 220px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  padding: 10px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+}
+
+.emoji-picker button {
+  width: 30px;
+  height: 30px;
+  color: #111827;
+  font-size: 18px;
+}
+
+.primary-button {
+  min-width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 999px;
+  background: #1d9bf0;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: #1687d9;
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @media (max-width: 700px) {
   .create-post {
-    padding: 16px 14px;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .create-avatar {
+    width: 42px;
+    height: 42px;
   }
 
   .create-post textarea {
-    min-height: 72px;
-    font-size: 17px;
+    min-height: 80px;
+    font-size: 18px;
   }
 
-  .create-post-actions {
-    gap: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .create-post {
-    padding: 14px 12px;
+  .create-icons {
+    gap: 10px;
   }
 
+  .create-icons button,
   .image-button {
-    font-size: 13px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .primary-button {
+    min-width: 75px;
+    height: 36px;
+    font-size: 15px;
   }
 }
+/* Styles for the create post form. */

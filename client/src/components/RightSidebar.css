@@ -1,23 +1,44 @@
 .right-sidebar {
   position: sticky;
-  top: 88px;
+  top: 24px;
   height: fit-content;
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.right-search input {
+  width: 100%;
+  padding: 12px 16px;
+  color: #111827;
+  background: #f3f4f6;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  outline: none;
+}
+
+.right-search input:focus {
+  background: #ffffff;
+  border-color: #5b2cff;
 }
 
 .side-card {
-  padding: 18px;
+  overflow: hidden;
   background: white;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .side-card h3 {
-  margin: 0 0 16px;
+  margin: 0;
+  padding: 16px;
+  font-size: 18px;
 }
 
 .side-card p {
-  margin: 0 -18px;
-  padding: 12px 18px;
+  margin: 0;
+  padding: 12px 16px;
   border-top: 1px solid #f1f5f9;
   color: #6b7280;
   font-size: 14px;
@@ -27,14 +48,61 @@
   color: #111827;
 }
 
+.compact-card button,
+.latest-card button {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  color: #111827;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid #f1f5f9;
+  text-align: left;
+  cursor: pointer;
+}
+
+.compact-card button:hover,
+.latest-card button:hover {
+  background: #f8fafc;
+}
+
+.compact-card button > span,
+.latest-card button {
+  min-width: 0;
+}
+
+.compact-card small,
+.latest-card span {
+  display: block;
+  overflow: hidden;
+  color: #64748b;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-avatar {
+  width: 36px;
+  height: 36px;
+}
+
+.latest-card button {
+  display: grid;
+  gap: 4px;
+}
+
 .right-sidebar > small {
   display: block;
-  margin: 14px;
+  margin: 0 8px 20px;
   color: #9ca3af;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1300px) {
   .right-sidebar {
     display: none;
   }
 }
+/* Styles for the right sidebar search and suggestion panels. */

@@ -3,6 +3,7 @@ import { SERVER_URL } from "./apiConfig";
 const API_URL = `${SERVER_URL}/api/auth`;
 
 const sendRequest = async (endpoint, data) => {
+  // Register and login both send JSON data to the auth API.
   const response = await fetch(`${API_URL}${endpoint}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -27,6 +28,7 @@ export const loginUser = (userData) => {
 };
 
 export const getCurrentUser = async () => {
+  // Ask the backend who owns the saved token.
   const response = await fetch(`${API_URL}/me`, {
     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   });

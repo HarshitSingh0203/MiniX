@@ -11,6 +11,7 @@ function Bookmarks({ onNavigate }) {
   useEffect(() => {
     let ignore = false;
 
+    // Load only the posts that this user saved.
     getBookmarkedPosts()
       .then((data) => {
         if (!ignore) setPosts(data);
@@ -27,6 +28,15 @@ function Bookmarks({ onNavigate }) {
     };
   }, []);
 
+  const removePostFromList = (id) => {
+    setPosts((currentPosts) => currentPosts.filter((item) => item._id !== id));
+  };
+
+  const handleBookmarkChange = (id, bookmarked) => {
+    // If a bookmark is removed while on this page, hide it from the list.
+    if (!bookmarked) removePostFromList(id);
+  };
+
   return (
     <section className="page-content">
       <div className="page-title"><h1>Bookmarks</h1></div>
@@ -41,10 +51,8 @@ function Bookmarks({ onNavigate }) {
         <PostCard
           key={post._id}
           post={post}
-          onDelete={(id) => setPosts(posts.filter((item) => item._id !== id))}
-          onBookmarkChange={(id, bookmarked) => {
-            if (!bookmarked) setPosts(posts.filter((item) => item._id !== id));
-          }}
+          onDelete={removePostFromList}
+          onBookmarkChange={handleBookmarkChange}
           onOpenProfile={(username) => onNavigate("profile", username)}
         />
       ))}
