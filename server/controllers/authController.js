@@ -1,30 +1,47 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const { formatAuthUser } = require("../utils/userDto");
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+// Create JWT token for logged in user
+const createToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
 };
 
+// ---------------- Register User ----------------
 const register = async (req, res) => {
   try {
-    const { name, username, email, password } = req.body ?? {};
+    // Get data from request body
+    const { name, username, email, password } = req.body;
 
+    // Check if all fields are filled
     if (!name || !username || !email || !password) {
       return res.status(400).json({
-        message: "name, username, email, and password are required",
+        message: "All fields are required",
       });
     }
 
+    // Remove extra spaces and convert email to lowercase
     const cleanEmail = email.toLowerCase().trim();
     const cleanUsername = username.trim();
-    const userExists = await User.findOne({
+
+    // Check if user already exists
+    const alreadyUser = await User.findOne({
       $or: [{ email: cleanEmail }, { username: cleanUsername }],
     });
-    if (userExists) return res.status(400).json({ message: "User already exists" });
 
+    if (alreadyUser) {
+      return res.status(400).json({
+        message: "User already exists",
+      });
+    }
+
+    // Encrypt password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Save new user
     const user = await User.create({
       name,
       username: cleanUsername,
@@ -32,51 +49,75 @@ const register = async (req, res) => {
       password: hashedPassword,
     });
 
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      token: generateToken(user._id),
-    });
+    // Generate login token
+    const token = createToken(user._id);
+
+    // Send user data with token
+    res.status(201).json(formatAuthUser(user, token));
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
+
+// ---------------- Login User ----------------
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body ?? {};
+    // Get email and password
+    const { email, password } = req.body;
 
+    // Check empty fields
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res.status(400).json({
+        message: "Email and password are required",
+      });
     }
 
-    const user = await User.findOne({ email: email.toLowerCase().trim() });
+    const cleanEmail = email.toLowerCase().trim();
+
+    // Find user by email
+    const user = await User.findOne({ email: cleanEmail }).select(
+      "+profilePhoto +avatar"
+    );
 
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({
+        message: "Invalid email or password",
+      });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    // Compare entered password with saved password
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    if (!passwordMatch) {
+      return res.status(400).json({
+        message: "Invalid email or password",
+      });
     }
 
-    res.json({
-      _id: user._id,
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      token: generateToken(user._id),
-    });
+    // Create token after successful login
+    const token = createToken(user._id);
+
+    // Send user details
+    res.json(formatAuthUser(user, token));
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
+// ---------------- Get Current User ----------------
+// Returns details of logged in user
 const getMe = (req, res) => {
-  res.json(req.user);
+  res.json(formatAuthUser(req.user));
 };
 
-module.exports = { register, login, getMe };
+module.exports = {
+  register,
+  login,
+  getMe,
+};
